@@ -1,0 +1,4 @@
+- name: Install PHP-FPM
+  apt: pkg=php5-fpm state=latest update_cache=true
+  when: phpppastable|success
+  register: phpfpminstalled

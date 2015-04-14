@@ -1,0 +1,8 @@
+- name: Add PHP 5.6 Repository
+  apt_repository: repo='ppa:ondrej/php5-5.6' state=present
+  register: phpppastable
+
+- name: Install PHP 5.6
+  apt: pkg=php5-cli state=latest update_cache=true
+  when: phpppastable|success
+  register: phpinstalled

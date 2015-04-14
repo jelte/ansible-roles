@@ -1,0 +1,4 @@
+---
+- name: Add php.ini Config
+  when: phpinstalled|success
+  template: src=php.ini.j2 dest=/etc/php5/cli/conf.d/00-php.ini owner=root group=root

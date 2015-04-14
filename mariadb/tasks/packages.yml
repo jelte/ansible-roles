@@ -1,0 +1,19 @@
+- name: Add MariaDB apt key
+  apt_key: keyserver=hkp://keyserver.ubuntu.com:80 id=0xcbcb082a1bb943db state=present
+
+- name: Add MariaDB apt repository
+  apt_repository: repo='deb http://mariadb.mirror.nucleus.be//repo/10.0/ubuntu trusty main'
+
+- name: Install MariaDB
+  apt: pkg={{ item }} update_cache=true
+  with_items:
+    - mariadb-server
+    - libmariadbclient-dev
+    - python-dev
+    - python-pip
+    - build-essential
+    - zlib1g-dev
+    - libssl-dev
+
+- name: install pip modules
+  pip: name=mysql-python

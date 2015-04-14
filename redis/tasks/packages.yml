@@ -1,0 +1,8 @@
+- name: Add Redis Repository
+  apt_repository: repo='ppa:chris-lea/redis-server' state=present
+  register: redisppa
+
+- name: Install Redis
+  apt: pkg=redis-server state=latest update_cache=true
+  when: redisppa|success
+  register: redisinstalled

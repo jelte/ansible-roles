@@ -1,0 +1,10 @@
+- name: Add HAProxy Repository
+  apt_repository: repo='ppa:vbernat/haproxy-1.5' state=present
+  register: haproxyppastable
+
+- name: Install HAProxy
+  apt: pkg={{item}} state=latest update_cache=true
+  when: haproxyppastable|success
+  with_items:
+    - haproxy
+    - socat

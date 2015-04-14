@@ -1,0 +1,9 @@
+- name: Allow mariadb access
+  ufw: rule=allow port=3306 src={{item}}
+  with_items:
+    - 127.0.0.1
+    - 192.168.0.11
+    - 192.168.0.12
+    - 192.168.0.21
+    - 192.168.0.22
+    - 192.168.0.50

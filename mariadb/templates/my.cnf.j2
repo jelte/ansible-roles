@@ -1,0 +1,15 @@
+[mysqld]
+bind-address            = {{ ansible_eth0.ipv4.address }}
+{% if ansible_eth1 is defined %}
+bind-address            = {{ ansible_eth1.ipv4.address }}
+{% endif %}
+
+server-id               = {{ mysql_server_id }}
+
+{% if mysql_replication_role == 'slave' %}
+relay-log               = /var/log/mysql/mysql-relay-bin.log
+{% endif %}
+log_bin                 = /var/log/mysql/mysql-bin.log
+{% if mysql_database_name is defined %}
+binlog_do_db            = {{ mysql_database_name }}
+{% endif %}
