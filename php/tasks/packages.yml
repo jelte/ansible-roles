@@ -6,3 +6,15 @@
   apt: pkg=php5-cli state=latest update_cache=true
   when: phpppastable|success
   register: phpinstalled
+
+- name: install extra php modules
+  apt: name={{item}} state=present
+  with_items:
+    - php5-curl
+    - php5-gd
+    - php5-mysql
+    - php5-memcache
+    - php5-mcrypt
+    - php5-intl
+    - php5-xmlrpc
+  when: phpppastable|success

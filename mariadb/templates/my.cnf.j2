@@ -3,6 +3,7 @@ bind-address            = {{ ansible_eth0.ipv4.address }}
 {% if ansible_eth1 is defined %}
 bind-address            = {{ ansible_eth1.ipv4.address }}
 {% endif %}
+bind-address            = 127.0.0.1
 
 server-id               = {{ mysql_server_id }}
 
